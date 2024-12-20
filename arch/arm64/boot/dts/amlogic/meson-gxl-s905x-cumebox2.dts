@@ -15,6 +15,11 @@
 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
 	model = "Amlogic Meson GXL (S905X) CumeBox2 Board";
 
+	memory@0 {
+		device_type = "memory";
+		reg = <0x0 0x0 0x0 0x80000000>;// 2G
+	};
+
 	dio2133: analog-amplifier {
 		compatible = "simple-audio-amplifier";
 		sound-name-prefix = "AU2";
@@ -96,7 +101,7 @@
 		};
 	};
 
-  leds {
+        leds {
 		compatible = "gpio-leds";
 
 		led_blue {
@@ -220,6 +225,15 @@
 		};
 	};
 
+	vddgpu: regulator-vddgpu {
+		compatible = "regulator-fixed";
+		regulator-name = "mali";
+		regulator-min-microvolt = <800000>;
+		regulator-max-microvolt = <800000>;
+		vin-supply = <&ao_5v>;
+		regulator-always-on;
+	};
+
 	openvfd {
 		compatible = "open,vfd";
 		dev_name = "openvfd";
@@ -267,7 +281,6 @@
 	status = "okay";
 };
 
-
 // enable I2C
 &i2c_AO {
 	status = "okay";
@@ -284,4 +297,10 @@
 		solomon,page-offset = < 0 >;
 		solomon,com-invdir;
 	};
+};
+
+// gpu mail 450
+&mali {
+    status = "okay";
+	mali-supply=<&vddgpu>;
 };
