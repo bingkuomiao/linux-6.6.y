@@ -293,5 +293,4 @@
 // gpu mail 450
 &mali {
     status = "okay";
-	mali-supply=<&vddgpu>;
 };
