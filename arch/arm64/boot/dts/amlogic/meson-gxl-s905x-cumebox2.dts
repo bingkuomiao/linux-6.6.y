@@ -225,24 +225,23 @@
 		};
 	};
 
-    dc_in: regulator-vcc_12v {
-            compatible = "regulator-fixed";
-            regulator-name = "VCC_12V";
-            regulator-min-microvolt = <12000000>;
-            regulator-max-microvolt = <12000000>;
-            regulator-boot-on;
-            regulator-always-on;
-    };
+	ao_5v: regulator-ao_5v {
+		compatible = "regulator-fixed";
+		regulator-name = "AO_5V";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		vin-supply = <&dc_in>;
+		regulator-always-on;
+	};
 
-    vddgpu: regulator-vddgpu {
-            compatible = "regulator-fixed";
-            regulator-name = "mali";
-            regulator-min-microvolt = <950000>;
-            regulator-max-microvolt = <950000>;
-            vin-supply = <&dc_in>;
-            regulator-boot-on;
-            regulator-always-on;
-    };
+	vddgpu: regulator-vddgpu {
+		compatible = "regulator-fixed";
+		regulator-name = "mali";
+		regulator-min-microvolt = <800000>;
+		regulator-max-microvolt = <800000>;
+		vin-supply = <&ao_5v>;
+		regulator-always-on;
+	};
 
 	openvfd {
 		compatible = "open,vfd";
