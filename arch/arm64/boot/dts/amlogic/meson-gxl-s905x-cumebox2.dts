@@ -225,23 +225,24 @@
 		};
 	};
 
-	ao_5v: regulator-ao_5v {
-		compatible = "regulator-fixed";
-		regulator-name = "AO_5V";
-		regulator-min-microvolt = <5000000>;
-		regulator-max-microvolt = <5000000>;
-		vin-supply = <&dc_in>;
-		regulator-always-on;
-	};
+   dc_in: regulator-vcc_12v {
+            compatible = "regulator-fixed";
+            regulator-name = "VCC_12V";
+            regulator-min-microvolt = <12000000>;
+            regulator-max-microvolt = <12000000>;
+            regulator-boot-on;
+            regulator-always-on;
+    };
 
-	vddgpu: regulator-vddgpu {
-		compatible = "regulator-fixed";
-		regulator-name = "mali";
-		regulator-min-microvolt = <800000>;
-		regulator-max-microvolt = <800000>;
-		vin-supply = <&ao_5v>;
-		regulator-always-on;
-	};
+    vddgpu: regulator-vddgpu {
+            compatible = "regulator-fixed";
+            regulator-name = "mali";
+            regulator-min-microvolt = <950000>;
+            regulator-max-microvolt = <950000>;
+            vin-supply = <&dc_in>;
+            regulator-boot-on;
+            regulator-always-on;
+    };
 
 	openvfd {
 		compatible = "open,vfd";
@@ -308,8 +309,17 @@
 	};
 };
 
-// gpu mail 450
 &mali {
+	interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>;
+	interrupt-names = "gp", "gpmmu", "pp", "pmu","pp0", "ppmmu0", "pp1", "ppmmu1";
+
     mali-supply=<&vddgpu>;
     status = "okay";
 };
