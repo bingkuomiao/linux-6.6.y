@@ -147,27 +147,27 @@
 
 	thermal-zones {
 		cpu-thermal {
-			polling-delay-passive = <800>; /* milliseconds */
+			polling-delay-passive = <200>; /* milliseconds */
 			polling-delay = <2000>; /* milliseconds */		
 			thermal-sensors = <&scpi_sensors 0>;
 
 			trips {
 				cpu_active: cpu-active {
-					temperature = <50000>; /* millicelsius */
-					hysteresis = <3000>; /* millicelsius */
+					temperature = <60000>; /* millicelsius */
+					hysteresis = <2000>; /* millicelsius */
 					type = "active";
 				};
 
 				cpu_passive: cpu-passive {
-					temperature = <75000>; /* millicelsius */
+					temperature = <85000>; /* millicelsius */
 					hysteresis = <2000>; /* millicelsius */
 					type = "passive";
 				};
 
-				cpu_hot: cpu-hot {
+				cpu_critical: cpu-critical {
 					temperature = <95000>; /* millicelsius */
 					hysteresis = <2000>; /* millicelsius */
-					type = "hot";
+					type = "critical";
 				};
 			};
 
@@ -183,7 +183,7 @@
 				};
 
 				map2 {
-					trip = <&cpu_hot>;
+					trip = <&cpu_critical>;
 					cooling-device = <&gpio_fan THERMAL_NO_LIMIT 1>,
 				              <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
 				              <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
