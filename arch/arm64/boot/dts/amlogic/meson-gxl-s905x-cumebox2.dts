@@ -130,7 +130,7 @@
 
 		led_link {
 			label = "led_link";
-            color = <LED_COLOR_ID_YELLOW>;
+      color = <LED_COLOR_ID_YELLOW>;
 			gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 			linux,default-trigger = "mdio_mux-0.e40908ff:08:link";
@@ -138,10 +138,10 @@
 
 		led_act {
 			label = "led_act";
-            color = <LED_COLOR_ID_YELLOW>;
+      color = <LED_COLOR_ID_YELLOW>;
 			gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-            linux,default-trigger = "netdev";
+      linux,default-trigger = "netdev";
 		};
 	};
 
@@ -153,7 +153,7 @@
 
 			trips {
 				cpu_active: cpu-active {
-					temperature = <60000>; /* millicelsius */
+					temperature = <50000>; /* millicelsius */
 					hysteresis = <2000>; /* millicelsius */
 					type = "active";
 				};
