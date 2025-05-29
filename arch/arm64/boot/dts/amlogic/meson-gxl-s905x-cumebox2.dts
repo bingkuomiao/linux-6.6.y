@@ -29,7 +29,6 @@
 
 	cvbs-connector {
 		compatible = "composite-video-connector";
-
 		port {
 			cvbs_connector_in: endpoint {
 				remote-endpoint = <&cvbs_vdac_out>;
@@ -40,7 +39,6 @@
 	hdmi-connector {
 		compatible = "hdmi-connector";
 		type = "a";
-
 		port {
 			hdmi_connector_in: endpoint {
 				remote-endpoint = <&hdmi_tx_tmds_out>;
@@ -194,7 +192,7 @@
 	gpio_fan:gpio-fan {
 		#cooling-cells = <2>;
 		compatible = "gpio-fan";
-        status = "okay";
+		status = "okay";
 		gpio-fan,speed-map = <0 0 4500 1>;
 		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>; //3 gpio 504
 	};
