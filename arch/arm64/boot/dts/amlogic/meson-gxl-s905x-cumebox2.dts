@@ -86,7 +86,6 @@
 
 		dai-link-2 {
 			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-
 			codec-0 {
 				sound-dai = <&hdmi_tx>;
 			};
@@ -94,7 +93,6 @@
 
 		dai-link-3 {
 			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-
 			codec-0 {
 				sound-dai = <&acodec>;
 			};
@@ -130,7 +128,7 @@
 
 		led_link {
 			label = "led_link";
-      color = <LED_COLOR_ID_YELLOW>;
+            color = <LED_COLOR_ID_YELLOW>;
 			gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 			linux,default-trigger = "mdio_mux-0.e40908ff:08:link";
@@ -138,34 +136,34 @@
 
 		led_act {
 			label = "led_act";
-      color = <LED_COLOR_ID_YELLOW>;
+            color = <LED_COLOR_ID_YELLOW>;
 			gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-      linux,default-trigger = "netdev";
+            linux,default-trigger = "netdev";
 		};
 	};
 
 	thermal-zones {
 		cpu-thermal {
-			polling-delay-passive = <200>; /* milliseconds */
-			polling-delay = <2000>; /* milliseconds */		
+			polling-delay-passive = <250>; /* milliseconds */
+			polling-delay = <1000>; /* milliseconds */		
 			thermal-sensors = <&scpi_sensors 0>;
 
 			trips {
 				cpu_active: cpu-active {
-					temperature = <50000>; /* millicelsius */
+					temperature = <45000>; /* millicelsius */
 					hysteresis = <2000>; /* millicelsius */
 					type = "active";
 				};
 
 				cpu_passive: cpu-passive {
-					temperature = <85000>; /* millicelsius */
+					temperature = <90000>; /* millicelsius */
 					hysteresis = <2000>; /* millicelsius */
 					type = "passive";
 				};
 
 				cpu_critical: cpu-critical {
-					temperature = <95000>; /* millicelsius */
+					temperature = <110000>; /* millicelsius */
 					hysteresis = <2000>; /* millicelsius */
 					type = "critical";
 				};
@@ -194,11 +192,11 @@
 		};
 	};
 
-	gpio_fan: gpio-fan {
+	gpio_fan:gpio-fan {
 		#cooling-cells = <2>;
 		compatible = "gpio-fan";
-                status = "okay";
-		gpio-fan,speed-map = <0 0 3500 1>;
+        status = "okay";
+		gpio-fan,speed-map = <0 0 4500 1>;
 		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>; //3 gpio 504
 	};
 
@@ -226,22 +224,22 @@
 	};
 
    dc_in: regulator-vcc_12v {
-            compatible = "regulator-fixed";
-            regulator-name = "VCC_12V";
-            regulator-min-microvolt = <12000000>;
-            regulator-max-microvolt = <12000000>;
-            regulator-boot-on;
-            regulator-always-on;
+		compatible = "regulator-fixed";
+		regulator-name = "VCC_12V";
+		regulator-min-microvolt = <12000000>;
+		regulator-max-microvolt = <12000000>;
+		regulator-boot-on;
+		regulator-always-on;
     };
 
     vddgpu: regulator-vddgpu {
-            compatible = "regulator-fixed";
-            regulator-name = "mali";
-            regulator-min-microvolt = <950000>;
-            regulator-max-microvolt = <950000>;
-            vin-supply = <&dc_in>;
-            regulator-boot-on;
-            regulator-always-on;
+		compatible = "regulator-fixed";
+		regulator-name = "mali";
+		regulator-min-microvolt = <950000>;
+		regulator-max-microvolt = <950000>;
+		vin-supply = <&dc_in>;
+		regulator-boot-on;
+		regulator-always-on;
     };
 
 	openvfd {
@@ -299,7 +297,7 @@
 	clock-frequency = < 400000 >;
 
 	ssd1306: oled@3c {
-                status = "okay";
+        status = "okay";
 		compatible = "solomon,ssd1306fb-i2c";
 		reg = < 0x3c >;
 		solomon,width = < 128 >;
