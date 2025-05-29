@@ -99,47 +99,46 @@
 		};
 	};
 
-    leds {
+	leds {
 		compatible = "gpio-leds";
-
 		led_blue {
 			label = "led_blue";
 			color = <LED_COLOR_ID_BLUE>;
 			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>; // 73  gpio 474
-            default-state = "off";
-            linux,default-trigger = "default-on";
+			default-state = "off";
+			linux,default-trigger = "default-on";
 		};
-
+		
 		led_red {
 			label = "led_red";
 			color = <LED_COLOR_ID_RED>;
-            function = LED_FUNCTION_POWER;
+			function = LED_FUNCTION_POWER;
 			gpios = <&gpio GPIODV_26 GPIO_ACTIVE_HIGH>; // 75 gpio 476
-            default-state = "off";
+			default-state = "off";
 			panic-indicator;
 		};
-
+		
 		led_green {
 			label = "led_green";
 			color = <LED_COLOR_ID_GREEN>;
 			gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>; // 76  gpio 477
 			default-state = "off";
 		};
-
+		
 		led_link {
 			label = "led_link";
-            color = <LED_COLOR_ID_YELLOW>;
+			color = <LED_COLOR_ID_YELLOW>;
 			gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 			linux,default-trigger = "mdio_mux-0.e40908ff:08:link";
 		};
-
+		
 		led_act {
 			label = "led_act";
-            color = <LED_COLOR_ID_YELLOW>;
+			color = <LED_COLOR_ID_YELLOW>;
 			gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-            linux,default-trigger = "netdev";
+			linux,default-trigger = "netdev";
 		};
 	};
 
@@ -223,16 +222,16 @@
 		};
 	};
 
-   dc_in: regulator-vcc_12v {
+	dc_in: regulator-vcc_12v {
 		compatible = "regulator-fixed";
 		regulator-name = "VCC_12V";
 		regulator-min-microvolt = <12000000>;
 		regulator-max-microvolt = <12000000>;
 		regulator-boot-on;
 		regulator-always-on;
-    };
+	};
 
-    vddgpu: regulator-vddgpu {
+	vddgpu: regulator-vddgpu {
 		compatible = "regulator-fixed";
 		regulator-name = "mali";
 		regulator-min-microvolt = <950000>;
@@ -240,7 +239,7 @@
 		vin-supply = <&dc_in>;
 		regulator-boot-on;
 		regulator-always-on;
-    };
+	};
 
 	openvfd {
 		compatible = "open,vfd";
@@ -308,6 +307,6 @@
 };
 
 &mali {
-    mali-supply=<&vddgpu>;
-    status = "okay";
+	mali-supply=<&vddgpu>;
+	status = "okay";
 };
