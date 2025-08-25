@@ -11,6 +11,8 @@
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/sound/meson-aiu.h>
 
+/delete-node/ &{/reserved-memory/linux,cma}; // 删除父dtsi中的CMA节点
+
 / {
 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
 	model = "Amlogic Meson GXL (S905X) CumeBox2 Board";
@@ -19,8 +21,6 @@
 		device_type = "memory";
 		reg = <0x0 0x0 0x0 0x80000000>;// 2G
 	};
-
-    /delete-node/ &{/reserved-memory/linux,cma};
 
 	reserved-memory {
 		#address-cells = <2>;
@@ -323,6 +323,7 @@
 	mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
