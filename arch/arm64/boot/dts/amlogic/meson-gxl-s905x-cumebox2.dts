@@ -20,6 +20,8 @@
 		reg = <0x0 0x0 0x0 0x80000000>;// 2G
 	};
 
+    /delete-node/ &{/reserved-memory/linux,cma};
+
 	reserved-memory {
 		#address-cells = <2>;
 		#size-cells = <2>;
@@ -321,5 +323,6 @@
 	mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
