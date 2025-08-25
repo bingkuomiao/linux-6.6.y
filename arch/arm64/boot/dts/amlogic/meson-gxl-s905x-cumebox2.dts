@@ -141,7 +141,7 @@
 			color = <LED_COLOR_ID_YELLOW>;
 			gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-			linux,default-trigger = "mdio_mux-0.e40908ff:08:link";
+			linux,default-trigger = "netdev";
 		};
 		
 		led_act {
@@ -321,4 +321,5 @@
 	mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
