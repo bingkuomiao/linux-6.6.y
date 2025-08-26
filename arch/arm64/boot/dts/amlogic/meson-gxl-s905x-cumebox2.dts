@@ -122,7 +122,7 @@
 			gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>; // 76  gpio 477
 			default-state = "off";
 		};
-		
+/*		
 		led_link {
 			label = "led_link";
 			color = <LED_COLOR_ID_YELLOW>;
@@ -138,6 +138,7 @@
 			default-state = "off";
 			linux,default-trigger = "netdev";
 		};
+*/
 	};
 
 	thermal-zones {
@@ -275,6 +276,11 @@
 	hdmi-supply = <&hdmi_5v>;
 };
 
+&internal_phy {
+	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
+	pinctrl-names = "default";
+};
+
 &hdmi_tx_tmds_port {
 	hdmi_tx_tmds_out: endpoint {
 		remote-endpoint = <&hdmi_connector_in>;
@@ -308,6 +314,7 @@
 	mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
