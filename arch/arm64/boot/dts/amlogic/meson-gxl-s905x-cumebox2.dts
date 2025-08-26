@@ -276,6 +276,28 @@
 	hdmi-supply = <&hdmi_5v>;
 };
 
+eth_link_led_pins: eth-link-led-pins {
+    mux {
+        groups = "GPIOZ_14"; // 替换"eth_link_led", 使用具体GPIO组
+        function = "gpio_periphs"; // 功能改为通用的GPIO功能
+        bias-disable; // 禁止上下拉
+        output-low; // 输出模式，初始低电平。这是关键！
+    };
+};
+
+eth_act_led_pins: eth-act-led-pins {
+    mux {
+        groups = "GPIOZ_15"; // 替换"eth_act_led", 使用具体GPIO组
+        function = "gpio_periphs"; // 功能改为通用的GPIO功能
+        bias-disable; // 禁止上下拉
+        output-low; // 输出模式，初始低电平。
+    };
+};
+
+&ethmac {
+    status = "okay";
+};
+
 &internal_phy {
 	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
 	pinctrl-names = "default";
@@ -314,6 +336,7 @@
 	mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
