@@ -277,7 +277,7 @@
 };
 
 &pinctrl_periphs {
-    eth_link_led_pins: eth-link-led-pins {
+    eth_link_led_pins_cm: eth-link-led-pins-cm {
         mux {
             groups = "GPIOZ_14";       /* 使用你确认的物理引脚组 */
             function = "gpio_periphs"; /* 改为通用的GPIO功能 */
@@ -286,7 +286,7 @@
         };
     };
 
-    eth_act_led_pins: eth-act-led-pins {
+    eth_act_led_pins_cm: eth-act-led-pins-cm {
         mux {
             groups = "GPIOZ_15";       /* 使用你确认的物理引脚组 */
             function = "gpio_periphs"; /* 改为通用的GPIO功能 */
@@ -301,7 +301,7 @@
 };
 
 &internal_phy {
-	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
+	pinctrl-0 = <&eth_link_led_pins_cm>, <&eth_act_led_pins_cm>;
 	pinctrl-names = "default";
 };
 
@@ -338,6 +338,7 @@
 	mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
