@@ -122,22 +122,28 @@
 			gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>; // 76  gpio 477
 			default-state = "off";
 		};
-		
-		led_link {
-			label = "led_link";
-			color = <LED_COLOR_ID_YELLOW>;
-			gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-			linux,default-trigger = "mdio_mux-0.1:08:link";
-		};
-		
-		led_act {
-			label = "led_act";
-			color = <LED_COLOR_ID_GREEN>;
-			gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-			linux,default-trigger = "netdev";
-		};
+
+	    // 网口链接灯（Link LED）：通常常亮表示链接建立
+	    eth_link_led {
+	        label = "eth_link_led";  // LED标签（用户空间识别用）
+	        gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_LOW>;  // 低电平点亮（根据硬件调整）
+	        default-state = "off";  // 默认状态（off/on）
+
+	        linux,default-trigger = "netdev";  // 触发方式：跟随网口状态 mdio_mux-0.1:08:link
+	        netdev-name = "eth0";  // 关联的网口
+	        netdev-mode = "link";  // 触发条件：链接建立时亮
+	    };
+	
+	    // 网口活动灯（Activity LED）：闪烁表示数据传输
+	    eth_act_led {
+	        label = "eth_act_led";
+	        gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_LOW>;  // 低电平点亮（根据硬件调整）
+	        default-state = "off";
+	        // 可选：关联网口活动状态
+	        linux,default-trigger = "netdev";
+	        netdev-name = "eth0";
+	        netdev-mode = "tx rx";  // 触发条件：发送/接收数据时闪烁
+	    };
 	};
 
 	thermal-zones {
@@ -279,13 +285,6 @@
     status = "okay";
 };
 
-/*
-&internal_phy {
-	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
-	pinctrl-names = "default";
-};
-*/
-
 &hdmi_tx_tmds_port {
 	hdmi_tx_tmds_out: endpoint {
 		remote-endpoint = <&hdmi_connector_in>;
@@ -319,4 +318,5 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
