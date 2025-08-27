@@ -22,6 +22,19 @@
 		reg = <0x0 0x0 0x0 0x80000000>;// 2G
 	};
 
+	reserved-memory {
+	    #address-cells = <2>;
+	    #size-cells = <2>;
+	    ranges;
+	
+	    linux,cma {
+	        compatible = "shared-dma-pool";
+	        reg = <0x0 0x23000000 0x0 0x2000000>; // 32MB
+	        reusable;
+	        linux,cma-default;
+	    };
+	};
+
 	dio2133: analog-amplifier {
 		compatible = "simple-audio-amplifier";
 		sound-name-prefix = "AU2";
@@ -320,6 +333,7 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
