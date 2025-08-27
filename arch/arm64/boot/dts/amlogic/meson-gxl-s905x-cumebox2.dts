@@ -20,19 +20,6 @@
 		reg = <0x0 0x0 0x0 0x80000000>;// 2G
 	};
 
-	reserved-memory {
-	    #address-cells = <2>;
-	    #size-cells = <2>;
-	    ranges;
-	
-	    linux,cma {
-	        compatible = "shared-dma-pool";
-	        reg = <0x0 0x23000000 0x0 0x2000000>; // 32MB
-	        reusable;
-	        linux,cma-default;
-	    };
-	};
-
 	dio2133: analog-amplifier {
 		compatible = "simple-audio-amplifier";
 		sound-name-prefix = "AU2";
@@ -233,6 +220,25 @@
 		};
 	};
 
+	dc_in: regulator-vcc_12v {
+		compatible = "regulator-fixed";
+		regulator-name = "VCC_12V";
+		regulator-min-microvolt = <12000000>;
+		regulator-max-microvolt = <12000000>;
+		regulator-boot-on;
+		regulator-always-on;
+	};
+
+	vddgpu: regulator-vddgpu {
+		compatible = "regulator-fixed";
+		regulator-name = "mali";
+		regulator-min-microvolt = <950000>;
+		regulator-max-microvolt = <950000>;
+		vin-supply = <&dc_in>;
+		regulator-boot-on;
+		regulator-always-on;
+	};
+
 	openvfd {
 		compatible = "open,vfd";
 		dev_name = "openvfd";
@@ -310,5 +316,7 @@
 };
 
 &mali {
+    mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
