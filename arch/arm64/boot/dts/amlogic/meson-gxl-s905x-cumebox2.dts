@@ -133,7 +133,7 @@
 		
 		led_act {
 			label = "led_act";
-			color = <LED_COLOR_ID_YELLOW>;
+			color = <LED_COLOR_ID_GREEN>;
 			gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 			linux,default-trigger = "netdev";
@@ -299,8 +299,6 @@
 &mali {
 	status = "okay";
 };
-
-
 
 
 
