@@ -141,7 +141,7 @@
 	    // 网口链接灯（Link LED）：通常常亮表示链接建立
 	   eth_link_led {
 	        label = "eth_link_led";  // LED标签（用户空间识别用）
-	        gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_ HIGH>;  // 高电平点亮
+	        gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;  // 高电平点亮
 	        default-state = "off";  // 默认状态（off/on）
 
 	        linux,default-trigger = “mdio_mux-0.1:08:link";  // 触发方式：跟随网口状态 mdio_mux-0.1:08:link
@@ -152,7 +152,7 @@
 	    // 网口活动灯（Activity LED）：闪烁表示数据传输
 	    eth_act_led {
 	        label = "eth_act_led";
-	        gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_ HIGH>;  // 高电平点亮
+	        gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;  // 高电平点亮
 	        default-state = "off";
 
 	        linux,default-trigger = "netdev";
@@ -333,6 +333,7 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
