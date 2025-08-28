@@ -269,7 +269,7 @@
 };
 
 /* 仅补充其他LED的引脚组（网口灯引脚组已在别处定义，无需重复） */
-&pinctrl {
+&pinctrl_periphs {
     // 系统指示灯引脚配置（新增，避免与现有网口灯配置冲突）
     led_blue_pins: led_blue_pins {
         mux {
@@ -374,6 +374,7 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
