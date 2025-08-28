@@ -127,14 +127,14 @@
 	    eth_act_led: eth_act_led {
 	        label = "eth_act_led";
 	        gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;        // 硬件引脚：GPIOZ_15
-	        linux,default-trigger = "none";                   // 触发方式：跟随网口流量状态
+	        linux,default-trigger = "netdev";                   // 触发方式：跟随网口流量状态
 	    };
 	
 	    /* 系统状态指示灯 */
 	    led_blue: led_blue {
 	        label = "led_blue";
 	        color = <LED_COLOR_ID_BLUE>;
-            function = LED_FUNCTION_STATUS;
+          function = LED_FUNCTION_STATUS;
 	        gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;       // 硬件引脚：GPIODV_24（全局编号474）
 	        default-state = "off";                            // 初始状态：关闭
 	        linux,default-trigger = "default-on";             // 触发方式：默认常亮
@@ -152,7 +152,7 @@
 	    led_green: led_green {
 	        label = "led_green";
 	        color = <LED_COLOR_ID_GREEN>;
-            function = LED_FUNCTION_HEARTBEAT;
+          function = LED_FUNCTION_HEARTBEAT;
 	        gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>;       // 硬件引脚：GPIODV_27（全局编号477）
 	        default-state = "off";
 	        //linux,default-trigger = "heartbeat";
