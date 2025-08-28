@@ -121,7 +121,7 @@
 	    eth_link_led: eth_link_led {
 	        label = "eth_link_led";
 	        gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;  // 硬件引脚：GPIOZ_14
-	        linux,default-trigger = "netdev";           // 触发方式：跟随网口状态
+	        linux,default-trigger = "mdio_mux-0.1:08:link";           // 触发方式：跟随网口状态
 	        linux,netdev-name = "eth0";                       // 关联网口：eth0
 	        linux,netdev-mode = "link";                       // 触发条件：链路建立时点亮
 	    };
@@ -335,6 +335,7 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
