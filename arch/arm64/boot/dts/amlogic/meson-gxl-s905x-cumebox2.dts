@@ -29,7 +29,7 @@
 	
 	    linux,cma {
 	        compatible = "shared-dma-pool";
-	        reg = <0x0 0x23000000 0x0 0x2000000>; // 32MB
+	        reg = <0x0 0x23000000 0x0 0x1000000>; // 16MB
 	        reusable;
 	        linux,cma-default;
 	    };
@@ -330,5 +330,6 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
