@@ -138,6 +138,7 @@
 	    led_blue: led_blue {
 	        label = "led_blue";
 	        color = <LED_COLOR_ID_BLUE>;
+            function = LED_FUNCTION_STATUS;
 	        gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>; // 硬件引脚：GPIODV_24（全局编号474）
 	        default-state = "off";                      // 初始状态：关闭
 	        linux,default-trigger = "default-on";       // 触发方式：默认常亮
@@ -155,6 +156,7 @@
 	    led_green: led_green {
 	        label = "led_green";
 	        color = <LED_COLOR_ID_GREEN>;
+            function = LED_FUNCTION_HEARTBEAT;
 	        gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>; // 硬件引脚：GPIODV_27（全局编号477）
 	        default-state = "off";
 	        //linux,default-trigger = "heartbeat";
@@ -333,6 +335,7 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
