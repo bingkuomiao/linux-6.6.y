@@ -114,7 +114,8 @@
 
 	leds {
 	    compatible = "gpio-leds";
-	    pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
+        pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>,  // 复用现有网口灯引脚组
+                <&led_blue_pins>, <&led_red_pins>, <&led_green_pins>;  // 补充其他LED引脚组
 	    pinctrl-names = "default";
 
 	    /* 网口指示灯 */
@@ -267,6 +268,46 @@
 	};
 };
 
+/* 仅补充其他LED的引脚组（网口灯引脚组已在别处定义，无需重复） */
+&pinctrl {
+    // 系统指示灯引脚配置（新增，避免与现有网口灯配置冲突）
+    led_blue_pins: led_blue_pins {
+        mux {
+            groups = "gpio_dv24";  // 对应GPIODV_24
+            function = "gpio";     // 复用为GPIO功能
+        };
+        conf {
+            groups = "gpio_dv24";
+            bias-disable;          // 禁用上下拉
+            drive-strength = <2>;  // 驱动强度2mA
+        };
+    };
+
+    led_red_pins: led_red_pins {
+        mux {
+            groups = "gpio_dv26";  // 对应GPIODV_26
+            function = "gpio";
+        };
+        conf {
+            groups = "gpio_dv26";
+            bias-disable;
+            drive-strength = <2>;
+        };
+    };
+
+    led_green_pins: led_green_pins {
+        mux {
+            groups = "gpio_dv27";  // 对应GPIODV_27
+            function = "gpio";
+        };
+        conf {
+            groups = "gpio_dv27";
+            bias-disable;
+            drive-strength = <2>;
+        };
+    };
+};
+
 &acodec {
 	AVDD-supply = <&vddio_ao18>;
 	status = "okay";
@@ -333,6 +374,7 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
