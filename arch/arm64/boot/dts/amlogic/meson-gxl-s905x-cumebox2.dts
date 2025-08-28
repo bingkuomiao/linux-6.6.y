@@ -120,14 +120,14 @@
 	    /* 网口指示灯 */
 	    eth_link_led: eth_link_led {
 	        label = "eth_link_led";
-	        gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;  // 硬件引脚：GPIOZ_14
-	        linux,default-trigger = "mdio_mux-0.1:08:link";           // 触发方式：跟随网口状态
+	        gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;         // 硬件引脚：GPIOZ_14
+	        linux,default-trigger = "mdio_mux-0.1:08:link";    // 触发方式：跟随网口链接状态
 	    };
 	
 	    eth_act_led: eth_act_led {
 	        label = "eth_act_led";
-	        gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;  // 硬件引脚：GPIOZ_15
-	        linux,default-trigger = "netdev";
+	        gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;        // 硬件引脚：GPIOZ_15
+	        linux,default-trigger = "none";                   // 触发方式：跟随网口流量状态
 	    };
 	
 	    /* 系统状态指示灯 */
@@ -135,25 +135,25 @@
 	        label = "led_blue";
 	        color = <LED_COLOR_ID_BLUE>;
             function = LED_FUNCTION_STATUS;
-	        gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>; // 硬件引脚：GPIODV_24（全局编号474）
-	        default-state = "off";                      // 初始状态：关闭
-	        linux,default-trigger = "default-on";       // 触发方式：默认常亮
+	        gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;       // 硬件引脚：GPIODV_24（全局编号474）
+	        default-state = "off";                            // 初始状态：关闭
+	        linux,default-trigger = "default-on";             // 触发方式：默认常亮
 	    };
 	
 	    led_red: led_red {
 	        label = "led_red";
 	        color = <LED_COLOR_ID_RED>;
-	        function = LED_FUNCTION_POWER;              // 功能标识：电源指示灯
-	        gpios = <&gpio GPIODV_26 GPIO_ACTIVE_HIGH>; // 硬件引脚：GPIODV_26（全局编号476）
+	        function = LED_FUNCTION_POWER;                    // 功能标识：电源指示灯
+	        gpios = <&gpio GPIODV_26 GPIO_ACTIVE_HIGH>;       // 硬件引脚：GPIODV_26（全局编号476）
 	        default-state = "off";
-	        panic-indicator;                            // 特性：系统崩溃时点亮
+	        panic-indicator;                                  // 特性：系统崩溃时点亮
 	    };
 	
 	    led_green: led_green {
 	        label = "led_green";
 	        color = <LED_COLOR_ID_GREEN>;
             function = LED_FUNCTION_HEARTBEAT;
-	        gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>; // 硬件引脚：GPIODV_27（全局编号477）
+	        gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>;       // 硬件引脚：GPIODV_27（全局编号477）
 	        default-state = "off";
 	        //linux,default-trigger = "heartbeat";
 	    };
@@ -331,3 +331,4 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
