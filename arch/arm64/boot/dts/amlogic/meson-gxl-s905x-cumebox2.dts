@@ -333,10 +333,3 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
-
-
-
-
-
-
-
