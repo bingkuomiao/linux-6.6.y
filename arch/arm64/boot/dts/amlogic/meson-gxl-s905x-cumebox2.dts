@@ -143,7 +143,7 @@
 	    led_red: led_red {
 	        label = "led_red";
 	        color = <LED_COLOR_ID_RED>;
-	        function = LED_FUNCTION_POWER;                    // 功能标识：电源指示灯
+	        function = LED_FUNCTION_PANIC;                    // 功能标识：崩溃指示灯
 	        gpios = <&gpio GPIODV_26 GPIO_ACTIVE_HIGH>;       // 硬件引脚：GPIODV_26（全局编号476）
 	        default-state = "off";
 	        panic-indicator;                                  // 特性：系统崩溃时点亮
@@ -331,6 +331,7 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
 
