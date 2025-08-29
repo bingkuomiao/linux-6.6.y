@@ -122,14 +122,14 @@
 	        label = "eth_link_led";
 	        gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_HIGH>;         // 硬件引脚：GPIOZ_14
 	        linux,default-trigger = "mdio_mux-0.1:08:link";    // 触发方式：跟随网口链接状态
-          trigger-sources = <&eth0>;
+          trigger-sources = <&ethmac>;
 	    };
 	
       eth_act_led: eth_act_led {
           label = "eth_act_led";
           gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;
           linux,default-trigger = "netdev";
-          trigger-sources = <&eth0>;  // 替换 eth0 为实际网口名称
+          trigger-sources = <&ethmac>;  // 替换 eth0 为实际网口名称
       };
 	
 	    /* 系统状态指示灯 */
