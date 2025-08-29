@@ -127,7 +127,7 @@
 	    eth_act_led: eth_act_led {
 	        label = "eth_act_led";
 	        gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;        // 硬件引脚：GPIOZ_15
-	        linux,default-trigger = "netdev";                   // 触发方式：跟随网口流量状态
+	        linux,default-trigger = "activity";                   // 触发方式：跟随网口流量状态
 	    };
 	
 	    /* 系统状态指示灯 */
@@ -331,5 +331,6 @@
     mali-supply=<&vddgpu>;
 	status = "okay";
 };
+
 
 
