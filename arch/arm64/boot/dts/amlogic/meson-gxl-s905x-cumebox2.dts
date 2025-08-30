@@ -126,7 +126,7 @@
 	
       eth_act_led: eth_act_led {
           label = "eth_act_led";
-          gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_LOW>;
+          gpios = <&gpio GPIOZ_15 GPIO_ACTIVE_HIGH>;
           linux,default-trigger = "mido_mux-0.0:00:link";
       };
 	
